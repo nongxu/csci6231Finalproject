@@ -1,0 +1,72 @@
+Title: Zero-shot Animal Image Classification with CLIP: Baseline Performance and Failure-Case Analysis
+
+1. Problem Description
+  This project investigates the zero-shot classification ability of CLIP (Contrastive Language–Image Pretraining) on a small, 5-category animal dataset.
+  The goal is to measure how accurately CLIP can classify images into the categories below without any fine-tuning, and to analyze the specific conditions under which CLIP succeeds or fails.
+  Target animal categories (5 classes): Cat, Dog, Bird, Horse, Fish
+  This problem is simple enough to implement but still provides meaningful insights into CLIP’s strengths and weaknesses on “in-the-wild” images.
+
+2. Dataset
+  I will manually collect approximately 50–100 images across the five categories listed above.
+  Images will come from publicly available sources such as: Google Images, Flickr, COCO subset, Public domain / Creative Commons datasets
+  The dataset will be split as follows:
+    70% training (not used for training CLIP, only for sampling)
+    15% validation
+    15% test
+  Since CLIP is zero-shot, no training will occur — the train/val/test split is only for structured evaluation.
+  Evaluation Metric
+    Top-1 accuracy on the test set
+    Optional: Top-5 accuracy (CLIP often benefits from multiple text prompts)
+
+3. Method / Approach
+  3.1 Baseline: Zero-shot CLIP Classification
+    I will use the pretrained CLIP model (ViT-B/32 or RN50).
+    For each image:
+      Generate CLIP image embedding
+      Generate CLIP text embeddings for the 5 category prompts:
+        “a photo of a cat”
+        “a photo of a dog”
+        “a photo of a bird”
+        “a photo of a horse”
+        “a photo of a fish”
+      Compute cosine similarity
+      Pick the highest-similarity label as the predicted class
+    This forms a simple and transparent baseline.
+  3.2 Optional Extensions (time permitting)
+    These are strictly optional, and the project does not depend on them:
+      Compare short prompts vs descriptive prompts
+      e.g. “a close-up photo of a small domestic cat with fur”
+      Compare ViT vs ResNet CLIP versions
+      Add a few “hard” images (motion blur, low light, partial visibility) to stress-test CLIP
+    These are small additions and do not significantly increase workload.
+
+4. Expected Results
+  Based on CLIP’s known zero-shot behavior:
+    Clear, typical images of animals → high accuracy (70–90%)
+    Ambiguous images (e.g., birds far away, fish underwater, cats from the back view) → significantly lower performance
+  I expect the final performance to be:
+    Top-1 accuracy: 60–80% depending on prompt quality
+    Large variation between categories (fish & bird often harder)
+
+5. Analysis Plan
+  5.1 Success-case analysis
+    Show several images where CLIP:
+      Correctly identifies the animal despite difficult conditions
+      Performs well even with occlusion or unusual angles
+  5.2 Failure-case analysis
+    Collect images where CLIP fails and analyze probable causes:
+      Unusual animal poses
+      Low resolution or motion blur
+      Animals that resemble other categories (e.g., wolf vs dog, large bird vs small horse silhouette)
+      Background bias
+
+6. Final Deliverables
+  Notebook / code that loads images, runs CLIP, and computes metrics
+  Quantitative results (accuracy per category + confusion matrix)
+  Success & failure visualizations
+  Final report including:
+    Dataset description
+    Methods
+    Results
+    Analysis of successes and failures
+    What I learned from applying CLIP to this dataset
