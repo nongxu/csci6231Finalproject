@@ -1,0 +1,19 @@
+The categories you pick are quite distinct.  CLIP has been shown to get something like 80% accuracy in differentiating 200 different kinds of dogs,
+so the categories of Cat, Dog, Bird, Horse, Fish are really far apart and easy to distinguish.
+
+Your proposal does highlight that it might be hard to recognize the bird or dog when it is far away, but you don't talk about how you would quantify that.
+(for example, would you hand label images that were far away?).
+
+So, I want you to make sure that you find a way to carefully and quantitatively describe the behavior of CLIP...  the most natural version of that would be
+to quantify something about "how far away" or "how difficult are the imaging conditions".
+
+It might also be interesting to see if performance improves if your prompt matches the circumstance.
+
+For example.  Suppose X is an image of a cat far away.
+
+If you do zero-shot learning by comparing the embedding of X to the text "a photo of a cat" and "a photo of a dog" you might get the right or wrong.
+
+Do you do better by comparing the embedding of X to the text "a photo of a far-away cat" and "a photo of a far-away dog"?
+
+That could be interesting to show that accurately matching the prompt to the situation improves the performance (or to show that even if you 
+do the study carefully it doesn't improve performance).
