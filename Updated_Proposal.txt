@@ -1,0 +1,77 @@
+Title: Zero-shot Animal Image Classification with CLIP: Distance Effects and Prompt Matching Analysis
+
+1. Problem Description
+  This project investigates how image conditions (especially distance) affect CLIP's zero-shot classification performance on a 5-category animal dataset.
+  The main research questions are:
+    - How does the distance of the animal from the camera affect CLIP's accuracy?
+    - Can we improve accuracy by matching the text prompt to the imaging conditions?
+
+  Target categories: Cat, Dog, Bird, Horse, Fish
+
+2. Dataset
+  I will collect approximately 50-100 images across the five categories.
+
+  Key change from original proposal: Each image will be manually labeled with a "distance" attribute:
+    - close: animal takes up most of the frame, clear details visible
+    - medium: animal is clearly visible but not close-up
+    - far: animal is small in the frame or distant
+
+  The annotations will be stored in a CSV file with columns: filename, label, distance
+
+  Images will come from: Google Images, Flickr, Unsplash, COCO subset
+
+3. Method / Approach
+  3.1 Baseline: Standard Zero-shot Classification
+    Use CLIP (ViT-B/32) with standard prompts like "a photo of a cat"
+    Compute accuracy overall and broken down by distance category
+
+  3.2 Quantitative Distance Analysis
+    - Manually label each image with distance (close/medium/far)
+    - Report accuracy separately for each distance category
+    - Create visualizations showing accuracy vs distance
+    - Statistical comparison of performance across distance groups
+
+  3.3 Prompt Matching Experiment
+    Test if matching the prompt to the distance improves accuracy:
+    - For close images: "a close-up photo of a [animal]"
+    - For medium images: "a photo of a [animal]"
+    - For far images: "a photo of a [animal] far away"
+
+    Compare:
+    - Standard prompts (same prompt for all images)
+    - Matched prompts (prompt matches the distance condition)
+
+    Report improvement (or lack thereof) for each distance category
+
+  3.4 Image Quality Metrics
+    Also compute automatic metrics:
+    - Blur score (using Laplacian variance)
+    - Brightness level
+    Analyze correlation with classification accuracy
+
+4. Expected Results
+  - Close images: expect high accuracy (80-95%)
+  - Medium images: moderate accuracy (70-85%)
+  - Far images: lower accuracy (50-70%)
+
+  For prompt matching:
+  - Hypothesis: matched prompts may help with far-away images
+  - But need to test empirically - might not actually help
+
+5. Analysis Plan
+  Quantitative:
+  - Overall accuracy
+  - Per-category accuracy
+  - Per-distance accuracy
+  - Confusion matrix
+  - Comparison table: standard vs matched prompts
+
+  Qualitative:
+  - Success cases with discussion
+  - Failure cases with analysis of why CLIP failed
+
+6. Deliverables
+  - Jupyter notebook with all code and results
+  - CSV file with image annotations
+  - Visualizations (confusion matrix, accuracy charts)
+  - Final report with analysis
