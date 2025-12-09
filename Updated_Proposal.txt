@@ -73,5 +73,10 @@ Title: Zero-shot Animal Image Classification with CLIP: Distance Effects and Pro
 6. Deliverables
   - Jupyter notebook with all code and results
   - CSV file with image annotations
-  - Visualizations (confusion matrix, accuracy charts)
-  - Final report with analysis
+  - Visualizations (confusion matrix, accuracy charts, distance analysis, prompt comparison)
+  - Final report including:
+    - Dataset description
+    - Methods
+    - Results (quantitative + visualizations)
+    - Analysis of successes and failures
+    - What I learned from applying CLIP to this dataset
