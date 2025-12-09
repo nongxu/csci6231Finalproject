@@ -1,6 +1,6 @@
 # CLIP Animal Classification Project - Final Report
 
-**CSCI 6231 Deep Learning**
+**CSCI 6231 **
 **Student:** Nongxu Li
 
 ---
